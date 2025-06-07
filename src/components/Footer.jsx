@@ -1,4 +1,5 @@
 import { Box, Container, Typography } from "@mui/material";
+import PrivacyNotice from './PrivacyNotice';
 
 function Footer() {
   return (
@@ -16,6 +17,7 @@ function Footer() {
         <Typography variant="body2" align="center">
           © 2025 Kanaksan App. All rights reserved.
         </Typography>
+        <PrivacyNotice />
       </Container>
     </Box>
   );

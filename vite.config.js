@@ -15,60 +15,24 @@ export default defineConfig({
         theme_color: "#1976d2",
         background_color: "#ffffff",
         display: "standalone",
-        orientation: "portrait-primary",
         start_url: "/",
         scope: "/",
-        lang: "en-US",
-        categories: ["productivity", "utilities"],
         icons: [
           {
-            src: "K-192x192.png",
+            src: "/K-192x192.png",  // Note the leading slash
             sizes: "192x192",
-            type: "image/png",
-            purpose: "any",
+            type: "image/png"
           },
           {
-            src: "K-512x512.png",
+            src: "/K-512x512.png",  // Note the leading slash
             sizes: "512x512",
-            type: "image/png",
-            purpose: "any",
-          },
-          {
-            src: "K-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-            purpose: "maskable",
-          },
-          {
-            src: "K-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "maskable",
-          },
-          {
-            src: "apple-touch-icon.png",
-            sizes: "180x180",
-            type: "image/png",
-            purpose: "any",
-          },
-        ],
+            type: "image/png"
+          }
+        ]
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
-        runtimeCaching: [
-          {
-            urlPattern: /^https:\/\/ik\.imagekit\.io\/.*/i,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "imagekit-cache",
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7,
-              },
-            },
-          },
-        ],
-      },
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"]
+      }
     }),
   ],
 });

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { inject } from "@vercel/analytics";
 import { useState } from "react";
 import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
 
@@ -18,6 +20,17 @@ function App() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  useEffect(() => {
+    if (
+      window.location.hostname.includes("vercel.app") ||
+      window.location.hostname.includes("kanaksan.com")
+    ) {
+      import("@vercel/analytics").then(({ inject }) => {
+        inject();
+      });
+    }
+  }, []);
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
