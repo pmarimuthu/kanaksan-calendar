@@ -161,7 +161,7 @@ function WeatherWidget({ selectedDate }) {
           <WindCard weatherData={weatherData} />
           <UVCard weatherData={weatherData} />
           <LocationCard locationInfo={locationInfo} />
-          <DayInfoCard selectedDate={selectedDate} />
+          {/* <DayInfoCard selectedDate={selectedDate} /> */}
         </Grid>
       </Box>
     </Box>
