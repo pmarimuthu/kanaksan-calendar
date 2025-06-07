@@ -11,6 +11,7 @@ import CalendarWidget from "./components/CalendarWidget";
 import ImageDisplay from "./components/ImageDisplay";
 import Footer from "./components/Footer";
 import WeatherWidget from "./components/weather/WeatherWidget";
+import ThemeToggle from "./components/ThemeToggle";
 import { UI_CONFIG } from "./constants/uiconfig";
 
 function App() {
@@ -87,7 +88,16 @@ function App() {
         />
       )}
 
-      <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
+      <Container maxWidth={UI_CONFIG.LAYOUT.CONTAINER_MAX_WIDTH} sx={{ mt: 2, mb: 2, position: 'relative' }}>
+         <Box sx={{ 
+          position: 'absolute', 
+          top: 16, 
+          right: 16, 
+          zIndex: 10 
+        }}>
+          <ThemeToggle />
+        </Box>
+        
         <Box sx={{ mt: 4 }}>
           <DateDisplay selectedDate={selectedDate} isToday={isToday()} />
 

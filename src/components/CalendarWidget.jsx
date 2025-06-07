@@ -38,7 +38,6 @@ function CalendarWidget({ selectedDate, onDateChange, onTodayClick, isToday }) {
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-        {/* Prev Day Button */}
         <IconButton onClick={handlePrevDay} size="small" color="primary">
           <ArrowBack />
         </IconButton>
