@@ -35,4 +35,8 @@ export default defineConfig({
       }
     }),
   ],
+  publicDir: 'public', // Explicitly set public directory
+  build: {
+    copyPublicDir: true, // Ensure public files are copied
+  }
 });
