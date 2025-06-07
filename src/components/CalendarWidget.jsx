@@ -55,6 +55,10 @@ function CalendarWidget({ selectedDate, onDateChange, onTodayClick, isToday }) {
           onChange={onDateChange}
           sx={{ "& .MuiInputBase-root": { borderRadius: 2 } }}
           size="small"
+          inputProps={{
+            "data-date-format": "dd/mm/yyyy",
+            lang: "en-IN",
+          }}
         />
 
         <IconButton onClick={handleNextDay} size="small" color="primary">
