@@ -9,6 +9,7 @@ import CalendarWidget from "./components/CalendarWidget";
 import ImageDisplay from "./components/ImageDisplay";
 import Footer from "./components/Footer";
 import WeatherWidget from "./components/weather/WeatherWidget";
+import { UI_CONFIG } from "./constants/uiconfig";
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -50,18 +51,28 @@ function App() {
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <Header
-        onMenuClick={toggleDrawer}
-        onProfileClick={handleProfileMenuOpen}
-      />
+      {UI_CONFIG.HEADER.ENABLED && (
+        <Header
+          onMenuClick={UI_CONFIG.HEADER.SHOW_MENU ? toggleDrawer : undefined}
+          onProfileClick={
+            UI_CONFIG.HEADER.SHOW_PROFILE ? handleProfileMenuOpen : undefined
+          }
+          showMenu={UI_CONFIG.HEADER.SHOW_MENU}
+          showProfile={UI_CONFIG.HEADER.SHOW_PROFILE}
+        />
+      )}
 
-      <NavigationDrawer open={drawerOpen} onClose={toggleDrawer} />
+      {UI_CONFIG.NAVIGATION.ENABLED && UI_CONFIG.NAVIGATION.DRAWER_ENABLED && (
+        <NavigationDrawer open={drawerOpen} onClose={toggleDrawer} />
+      )}
 
-      <ProfileMenu
-        anchorEl={profileMenuAnchor}
-        open={Boolean(profileMenuAnchor)}
-        onClose={handleProfileMenuClose}
-      />
+      {UI_CONFIG.HEADER.ENABLED && UI_CONFIG.HEADER.SHOW_PROFILE && (
+        <ProfileMenu
+          anchorEl={profileMenuAnchor}
+          open={Boolean(profileMenuAnchor)}
+          onClose={handleProfileMenuClose}
+        />
+      )}
 
       <Container maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
         <Box sx={{ mt: 4 }}>
@@ -84,7 +95,7 @@ function App() {
         </Box>
       </Container>
 
-      <Footer />
+      {UI_CONFIG.FOOTER.ENABLED && <Footer />}
     </Box>
   );
 }
