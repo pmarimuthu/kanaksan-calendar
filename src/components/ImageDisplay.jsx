@@ -16,17 +16,19 @@ function ImageDisplay({ selectedDate, imageError, onImageError }) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        mt: 3,
-        mb: 3,
+        mt: 2,
+        mb: 2,
+        width: "100%",
       }}
     >
       {!imageError ? (
         <Box
           sx={{
-            maxWidth: "100%",
+            width: "100%",
+            maxWidth: 600,
             textAlign: "center",
             "& img": {
-              maxWidth: "100%",
+              width: "100%",
               height: "auto",
               borderRadius: 2,
               boxShadow: 3,
@@ -38,20 +40,14 @@ function ImageDisplay({ selectedDate, imageError, onImageError }) {
             alt={`Daily Sheet - ${selectedDate.toLocaleDateString()}`}
             onError={onImageError}
             crossOrigin="anonymous"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              borderRadius: "8px",
-              boxShadow: "0px 4px 12px rgba(0,0,0,0.15)",
-            }}
           />
         </Box>
       ) : (
         <Card
           sx={{
-            minHeight: 200,
             width: "100%",
             maxWidth: 600,
+            minHeight: 200,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

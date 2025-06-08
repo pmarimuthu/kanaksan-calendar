@@ -1,18 +1,16 @@
-import { useEffect } from "react";
-import { inject } from "@vercel/analytics";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
 
 import Header from "./components/Header";
 import NavigationDrawer from "./components/NavigationDrawer";
 import ProfileMenu from "./components/ProfileMenu";
-import DateDisplay from "./components/DateDisplay";
-import CalendarWidget from "./components/CalendarWidget";
 import ImageDisplay from "./components/ImageDisplay";
 import Footer from "./components/Footer";
 import WeatherWidget from "./components/weather/WeatherWidget";
 import ThemeToggle from "./components/ThemeToggle";
 import { UI_CONFIG } from "./constants/uiconfig";
+import CustomCalendarWidget from "./components/CustomCalendarWidget";
+import GoToTodayButton from "./components/GoToTodayButton";
 
 function App() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -33,17 +31,10 @@ function App() {
     }
   }, []);
 
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
-
-  const handleProfileMenuOpen = (event) => {
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+  const handleProfileMenuOpen = (event) =>
     setProfileMenuAnchor(event.currentTarget);
-  };
-
-  const handleProfileMenuClose = () => {
-    setProfileMenuAnchor(null);
-  };
+  const handleProfileMenuClose = () => setProfileMenuAnchor(null);
 
   const handleDateChange = (event) => {
     setSelectedDate(new Date(event.target.value));
@@ -60,7 +51,7 @@ function App() {
   };
 
   const isToday = () => {
-    return selectedDate.toDateString() === new Date().toDateString();
+    selectedDate.toDateString() === new Date().toDateString();
   };
 
   return (
@@ -88,33 +79,59 @@ function App() {
         />
       )}
 
-      <Container maxWidth={UI_CONFIG.LAYOUT.CONTAINER_MAX_WIDTH} sx={{ mt: 2, mb: 2, position: 'relative' }}>
-         <Box sx={{ 
-          position: 'absolute', 
-          top: 16, 
-          right: 16, 
-          zIndex: 10 
-        }}>
-          <ThemeToggle />
-        </Box>
-        
-        <Box sx={{ mt: 4 }}>
-          <DateDisplay selectedDate={selectedDate} isToday={isToday()} />
+      <Container maxWidth="sm" sx={{ mt: 2, mb: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1, // ⬅️ Reduced gap between all rows
+            width: "100%",
+            maxWidth: 600,
+            mx: "auto",
+          }}
+        >
+          {/* Row 1: Theme Toggle */}
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <ThemeToggle />
+          </Box>
 
-          <CalendarWidget
-            selectedDate={selectedDate}
-            onDateChange={handleDateChange}
-            onTodayClick={goToToday}
-            isToday={isToday()}
-          />
+          {/* Row 2: Calendar + Button */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: 1.5,
+              width: "100%",
+            }}
+          >
+            <CustomCalendarWidget
+              selectedDate={selectedDate}
+              onDateChange={handleDateChange}
+              onTodayClick={goToToday}
+              isToday={isToday()}
+            />
+            <Box sx={{ minWidth: { xs: "100%", sm: 150 } }}>
+              <GoToTodayButton
+                selectedDate={selectedDate}
+                onTodayClick={goToToday}
+              />
+            </Box>
+          </Box>
 
-          <ImageDisplay
-            selectedDate={selectedDate}
-            imageError={imageError}
-            onImageError={handleImageError}
-          />
+          {/* Row 3: Image */}
+          <Box sx={{ width: "100%" }}>
+            <ImageDisplay
+              selectedDate={selectedDate}
+              imageError={imageError}
+              onImageError={handleImageError}
+            />
+          </Box>
 
-          <WeatherWidget selectedDate={selectedDate} />
+          {/* Row 4: Weather */}
+          <Box sx={{ width: "100%" }}>
+            <WeatherWidget selectedDate={selectedDate} />
+          </Box>
         </Box>
       </Container>
 

@@ -7,9 +7,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.png", "apple-touch-icon.png"],
+      includeAssets: ["favicon.ico", "favicon.png", "apple-touch-icon.png"],
       manifest: {
-        name: "Kanaksan Daily Sheets App",
+        name: "Kanaksan Calendar App",
         short_name: "Kanaksan App",
         description: "Daily calendar sheets viewer with weather insights",
         theme_color: "#1976d2",
@@ -19,24 +19,30 @@ export default defineConfig({
         scope: "/",
         icons: [
           {
-            src: "/K-192x192.png",  // Note the leading slash
+            src: "/android-chrome-192x192.png",
             sizes: "192x192",
-            type: "image/png"
+            type: "image/png",
           },
           {
-            src: "/K-512x512.png",  // Note the leading slash
+            src: "/android-chrome-512x512.png",
             sizes: "512x512",
-            type: "image/png"
-          }
-        ]
+            type: "image/png",
+          },
+          {
+            src: "/apple-touch-icon.png",
+            sizes: "180x180",
+            type: "image/png",
+            purpose: "any",
+          },
+        ],
       },
       workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg}"]
-      }
+        globPatterns: ["**/*.{js,css,html,ico,png,svg}"],
+      },
     }),
   ],
-  publicDir: 'public', // Explicitly set public directory
+  publicDir: "public",
   build: {
-    copyPublicDir: true, // Ensure public files are copied
-  }
+    copyPublicDir: true,
+  },
 });

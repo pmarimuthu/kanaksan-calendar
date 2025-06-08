@@ -11,7 +11,7 @@ function DateDisplay({ selectedDate, isToday }) {
 
   return (
     <Typography
-      variant="h4"
+      variant="h6"
       component="h1"
       gutterBottom
       align="center"
