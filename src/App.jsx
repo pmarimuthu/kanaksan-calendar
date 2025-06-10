@@ -84,7 +84,7 @@ function App() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            gap: 1, // ⬅️ Reduced gap between all rows
+            gap: 0, // ⬅️ Reduced gap between all rows
             width: "100%",
             maxWidth: 600,
             mx: "auto",
@@ -101,7 +101,7 @@ function App() {
               display: "flex",
               flexDirection: { xs: "column", sm: "row" },
               alignItems: { xs: "stretch", sm: "center" },
-              gap: 1.5,
+              gap: 0,
               width: "100%",
             }}
           >
@@ -111,7 +111,14 @@ function App() {
               onTodayClick={goToToday}
               isToday={isToday()}
             />
-            <Box sx={{ minWidth: { xs: "100%", sm: 150 } }}>
+            <Box 
+              sx={{ 
+                minWidth: { xs: "100%", sm: 150 },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
               <GoToTodayButton
                 selectedDate={selectedDate}
                 onTodayClick={goToToday}
@@ -119,13 +126,29 @@ function App() {
             </Box>
           </Box>
 
-          {/* Row 3: Image */}
-          <Box sx={{ width: "100%" }}>
-            <ImageDisplay
-              selectedDate={selectedDate}
-              imageError={imageError}
-              onImageError={handleImageError}
-            />
+          {/* Row 3: Image - Now matches Row 2 width and alignment */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: 1,
+              width: "100%",
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: { xs: "100%", sm: "calc(320px + 150px + 1 * 8px)" },
+                mx: "auto",
+              }}
+            >
+              <ImageDisplay
+                selectedDate={selectedDate}
+                imageError={imageError}
+                onImageError={handleImageError}
+              />
+            </Box>
           </Box>
 
           {/* Row 4: Weather */}

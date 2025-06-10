@@ -7,7 +7,10 @@ function ImageDisplay({ selectedDate, imageError, onImageError }) {
     const year = date.getFullYear();
     const folderDate = `${month}${year}`;
     const fileName = `ds_${day}${month}${year}.jpg`;
-    return `https://ik.imagekit.io/kanaksan/kanaksan/dailysheets/${folderDate}/${fileName}`;
+    const theImageURL = `https://ik.imagekit.io/kanaksan/kanaksan/dailysheets/${year}/${folderDate}/${fileName}`;
+
+    console.log(`The Image URL: ${theImageURL}`);
+    return theImageURL;
   };
 
   return (
