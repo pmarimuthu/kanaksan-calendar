@@ -6,7 +6,7 @@ function ImageDisplay({ selectedDate, imageError, onImageError }) {
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
     const folderDate = `${month}${year}`;
-    const fileName = `ds_${day}${month}${year}.jpg`;
+    const fileName = `${day}${month}${year}.jpg`;
     const theImageURL = `https://ik.imagekit.io/kanaksan/kanaksan/dailysheets/${year}/${folderDate}/${fileName}`;
 
     console.log(`The Image URL: ${theImageURL}`);
